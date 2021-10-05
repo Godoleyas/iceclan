@@ -18,7 +18,7 @@ async def text(c, m):
          if m.text != Config.PASS:
             Config.LOGIN.remove(m.from_user.id)
             await m.reply_text(text="**Ur impostor? if ur real ice u could have entered the password correct lmao**", parse_mode="markdown")
-      if m.from_user.id in Config.feedback:
+      if m.from_user.id in Config.register:
          button = [[
                    InlineKeyboardButton("Sure", callback_data="yes"),
                    InlineKeyboardButton("Nah", callback_data="cancel")

@@ -10,4 +10,4 @@ class Config(object):
       START = os.environ.get("START", "")
       SEND = []
       LOGIN = []
-      registee = []
+      register = []

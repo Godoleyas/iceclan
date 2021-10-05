@@ -11,15 +11,15 @@ async def cb_handler(c, m):
   cb_data = m.data
 
   if "feed" in cb_data:
-      Config.feedback.append(m.from_user.id)
+      Config.register.append(m.from_user.id)
       button = [[InlineKeyboardButton("cancel", callback_data="cancel")]]
       markup = InlineKeyboardMarkup(button)
       await m.message.delete()
-      await c.send_message(chat_id=m.message.chat.id, text="Send your feed back here I will notify Papy.", reply_markup=markup)
+      await c.send_message(chat_id=m.message.chat.id, text="Send me your account's detail. You have to use this format, INGAMENAME INGAMEID ACCOUNTLEVEL. Thanks", reply_markup=markup)
 
   if "cancel" in cb_data:
-      if m.from_user.id in Config.feedback:
-         Config.feedback.remove(m.from_user.id)
+      if m.from_user.id in Config.register:
+         Config.register.remove(m.from_user.id)
       if m.from_user.id in Config.LOGIN:
          Config.LOGIN.remove(m.from_user.id)
       await m.message.delete()
@@ -35,7 +35,7 @@ async def cb_handler(c, m):
       await c.send_message(chat_id=m.message.chat.id, text=Translation.LOGIN)
        
   if "yes" in cb_data:
-      Config.feedback.remove(m.from_user.id)
+      Config.register.remove(m.from_user.id)
       feedtext = m.message.reply_to_message
       button = [[InlineKeyboardButton("Reply", callback_data=f"reply+{m.from_user.id}")]]
       markup = InlineKeyboardMarkup(button)
@@ -43,13 +43,13 @@ async def cb_handler(c, m):
           NS = await feedtext.forward(int(i))
           await NS.reply_text("Send the reply", reply_markup=markup, quote=True)
       await m.message.delete()
-      await c.send_message(chat_id=m.message.chat.id, text="Feedback sent successfully. Hope you will get reply soon")
+      await c.send_message(chat_id=m.message.chat.id, text="Message sent successfully.  Our team will start investigating asap")
 
 
   if "reply" in cb_data:
       id = m.data.split("+")[1]
       Config.SEND.append(id)
-      await c.send_message(chat_id=m.message.chat.id, text="Reply me the text which you wanted to send him")
+      await c.send_message(chat_id=m.message.chat.id, text="Reply me the text which you wanted to send them")
 
   if "about" in cb_data:
       await m.message.delete()

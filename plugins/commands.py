@@ -14,17 +14,17 @@ async def text(c, m):
          if m.text == Config.PASS:
             Config.LOGIN.remove(m.from_user.id)
             Config.OWNER.append(m.from_user.id)
-            await m.reply_text(text="From now you will receive feedbacks. Untill this bot restart.  If you want to get feedbacks permanently add your id in config vars")
+            await m.reply_text(text="Fair enough. From now on you will recieve message from users but if this bot restarts you have to enter the password again :)")
          if m.text != Config.PASS:
             Config.LOGIN.remove(m.from_user.id)
-            await m.reply_text(text="**Incorrect Password ⚠️**", parse_mode="markdown")
+            await m.reply_text(text="**Ur impostor? if ur real ice u could have entered the password correct lmao**", parse_mode="markdown")
       if m.from_user.id in Config.feedback:
          button = [[
-                   InlineKeyboardButton("Yes", callback_data="yes"),
-                   InlineKeyboardButton("No", callback_data="cancel")
+                   InlineKeyboardButton("Sure", callback_data="yes"),
+                   InlineKeyboardButton("Nah", callback_data="cancel")
                   ]]
          markup = InlineKeyboardMarkup(button)
-         await m.reply_text(text="Are you sure to send this feedback",
+         await m.reply_text(text="Do you really want to send this?",
                             reply_markup=markup,
                             quote=True)
       try:
@@ -32,14 +32,14 @@ async def text(c, m):
              id = Config.SEND[0]
              await c.send_message(chat_id=int(id), text=m.text, parse_mode="markdown")
              Config.SEND.remove(id)
-             await c.send_message(chat_id=m.chat.id, text="Notified successfully")
+             await c.send_message(chat_id=m.chat.id, text="Sent")
       except:
           pass
 
 @feedback.on_message(filters.command(["start"]))
 async def start(c, m):
       button = [[
-                InlineKeyboardButton("Feedback", callback_data="feedback"),
+                InlineKeyboardButton("Register", callback_data="register"),
                 InlineKeyboardButton("Rules", callback_data="rules"),
                 ],
                 [

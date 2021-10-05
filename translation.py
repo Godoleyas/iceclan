@@ -1,14 +1,14 @@
 from config import Config
 
 class Translation(object):
-      START = str(Config.START) + "\n\n Hi I am offcial bot of Ice clan. You can use me to join the clan. Thanks!"
+      START = str(Config.START) + "\n\nFor private chat with me [press me](t.me/papygamerz)"
 
       RULES = Config.RULES
 
-      LOGIN = """Only for authorised clan members"""
+      LOGIN = """Only for admins for receiving feedbacks"""
 
 
-      About ice = """**MY DETAILS:**
+      ABOUT = """**MY DETAILS:**
 
 ```My Name:``` [Papy Bots Feedback](https://t.me/papybotsfeedbackbot)
     

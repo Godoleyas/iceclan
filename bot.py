@@ -25,5 +25,5 @@ class feedback(Client):
         )
 
 if __name__ == "__main__" :
-    registerr().run()
+    feedback().run()
 
